@@ -1,10 +1,15 @@
 *{
   margin: 0;
   padding: 0;
+
 }
-body{
-  padding: 0;
-  margin: 0;
+.App{
+  width: 100%;
+}
+nav{
+  width: 100%;
+  height: auto;
+
 }
 .headerImg{
   display: flex;
@@ -76,4 +81,48 @@ body{
   color: white;
   border-radius: 15px;
 }
+.buttonReg:disabled{
+  background-color: red;
+}
+.inputMail{
+  width: 70%;
+}
+.inputPass{
+  width: 30%;
 
+}
+.passBox{
+
+  display: flex;
+  justify-content: center;
+  gap: 10%;
+  width: 100%;
+}
+
+.formRegister{
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.formRegister>input{
+  text-transform: capitalize;
+}
+.divRegister>h2{
+  font-weight: bolder;
+  padding: 10px 0;
+}
+.buttonReg{
+  padding: 2px 15px;
+  background-color: rgb(0, 158, 0);
+  font-weight: bolder;
+  color: white;
+  border-radius: 15px;
+}
+.divRegister{
+
+  padding: 3% 0;
+  background-color: #d4d4d4;
+}

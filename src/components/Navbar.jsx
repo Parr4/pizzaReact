@@ -2,9 +2,9 @@ import React from 'react'
 import pizzaimg from '../assets/pizza.webp'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Navbar() {
+export default function Navbar(props) {
   const total = 25500;
-  const token = true;
+
   return (
     <nav class="navbar navbar-expand-lg ">
       <div class="container-fluid">
@@ -29,10 +29,10 @@ export default function Navbar() {
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">{token ? <button>Logout</button> : <button>Iniciar Sesion</button>}</a>
+              <a class="nav-link">{props.token ? <button onClick={(e)=> {e.preventDefault; props.setToken(false); alert('Su cuenta se ha deslogueado')}}>Logout</button> : <button>Iniciar Sesion</button>}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">{token ? undefined : <button>Regristrarse</button>}</a>
+              <a class="nav-link" href="#">{props.token ? undefined : <button>Regristrarse</button>}</a>
             </li>
 
           </ul>

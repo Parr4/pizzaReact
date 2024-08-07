@@ -4,7 +4,11 @@ import Header from './Header'
 
 export default function Home() {
   return (
-    <div className='homeCont container-fluid row'>
+    <div>
+
+<Header></Header>
+
+<div className='homeCont container-fluid row'>
       
       <CardPizza
         name="Napolitana"
@@ -32,5 +36,9 @@ ac54-90f6c31eb3e3"
       />
 
     </div>
+
+    </div>
+
+    
   )
 }

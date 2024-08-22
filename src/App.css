@@ -191,3 +191,8 @@ nav{
   align-items: center;
   border-right:2px solid black ;
 }
+
+.selectTitle{
+  /* text-transform: uppercase; */
+  font-weight: bold;
+}

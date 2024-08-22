@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-export default function CardPizza({pizza , add, subtract}) {
+export default function CardPizza({pizza , add, subtract, setPizza}) {
     
 
     return (
@@ -24,7 +24,8 @@ export default function CardPizza({pizza , add, subtract}) {
                 <h6>${pizza.price.toLocaleString()}</h6>
                 <div className='buttons'>
                 <a onClick={() => subtract(pizza)} class="btn btn-danger"> - </a>
-                    <a onClick={() => add(pizza)} class="btn btn-success"> + </a>
+                <a onClick={() => setPizza(pizza)} class="btn btn-primary"> Ver más </a>
+                <a onClick={() => add(pizza)} class="btn btn-success"> + </a>
 
                 </div>
 

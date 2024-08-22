@@ -4,13 +4,30 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RegistrerPage from "./components/RegistrerPage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoginPage from "./components/LoginPage";
 import { Home } from "./components/Home";
 import { Cart } from "./components/Cart";
-import productos from "./components/productos.json";
+import { PizzaSelect } from "./components/PizzaSelect";
+// import productos from "./components/productos.json";
 
 function App() {
+  const [productos, setProductos] = useState([])
+
+  const obtenerProductos = async () => {
+    const res = await fetch("http://localhost:5000/api/pizzas");
+    const data = await res.json();
+    // let all_products = data.map((item) => item.name)
+    setProductos(data)
+  }
+
+  useEffect(() => {
+    obtenerProductos()
+  }, [])
+
+
+  const [pizzaSelect, setPizza ] =useState(null)
+
   // const [token, setToken] = useState(false); descomentar este
   const [token, setToken] = useState(true);
   const [datos, setDatos] = useState({
@@ -77,6 +94,13 @@ function App() {
     <div className="App">
       <Navbar token={token} setToken={setToken}></Navbar>
       {/* <Cart cart={cart} setCart={setCart}></Cart> */}
+      {/* {useEffect(()=> {
+        <PizzaSelect pizzaSelect={pizzaSelect}></PizzaSelect>
+      }, [setPizza] )} */}
+      {
+        pizzaSelect ? <PizzaSelect pizzaSelect={pizzaSelect}></PizzaSelect> :  null
+      }
+      
       <Cart
         cart={cart}
         totalCart={totalCart}
@@ -91,7 +115,7 @@ function App() {
         </h6>
       )}
       {token ? (
-        <Home productos={productos} add={add} subtract={subtract}></Home>
+        <Home productos={productos} add={add} subtract={subtract} setPizza={setPizza}></Home>
       ) : (
         <div>
           <RegistrerPage

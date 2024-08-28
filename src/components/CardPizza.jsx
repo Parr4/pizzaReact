@@ -1,5 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link, useParams } from 'react-router-dom';
 
 
 
@@ -23,9 +24,9 @@ export default function CardPizza({pizza , add, subtract, setPizza}) {
                 </p>
                 <h6>${pizza.price.toLocaleString()}</h6>
                 <div className='buttons'>
-                <a onClick={() => subtract(pizza)} class="btn btn-danger"> - </a>
-                <a onClick={() => setPizza(pizza)} class="btn btn-primary"> Ver más </a>
-                <a onClick={() => add(pizza)} class="btn btn-success"> + </a>
+                <button onClick={() => subtract(pizza)} class="btn btn-danger"> - </button>
+                <Link to='/pizza/p001'><button onClick={() => setPizza(pizza)} className="btn btn-primary">Ver más</button></Link>
+                <button onClick={() => add(pizza)} class="btn btn-success"> + </button>
 
                 </div>
 

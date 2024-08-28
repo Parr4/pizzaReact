@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from './Header'
-import { Listado } from './Listado'
+import Header from '../components/Header'
+import { Listado } from '../components/Listado'
 
 export const Home = ({productos , add, subtract, setPizza}) => {
   return (

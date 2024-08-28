@@ -3,12 +3,16 @@ import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import RegistrerPage from "./components/RegistrerPage";
+import RegistrerPage from "./pages/RegistrerPage";
 import { useEffect, useState } from "react";
-import LoginPage from "./components/LoginPage";
-import { Home } from "./components/Home";
-import { Cart } from "./components/Cart";
+import LoginPage from "./pages/LoginPage";
+import { Home } from "./pages/Home";
+import { Cart } from "./pages/Cart";
 import { PizzaSelect } from "./components/PizzaSelect";
+import { Route, Routes } from "react-router-dom";
+import { PizzaPage } from "./pages/PizzaPage";
+import { Profile } from "./pages/Profile";
+import { NotFound } from "./pages/NotFound";
 // import productos from "./components/productos.json";
 
 function App() {
@@ -26,10 +30,10 @@ function App() {
   }, [])
 
 
-  const [pizzaSelect, setPizza ] =useState(null)
+  const [pizzaSelect, setPizza] = useState(null)
 
   // const [token, setToken] = useState(false); descomentar este
-  const [token, setToken] = useState(true);
+  const [token, setToken] = useState(false);
   const [datos, setDatos] = useState({
     email: "",
     password: "",
@@ -92,40 +96,86 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar token={token} setToken={setToken}></Navbar>
-      {/* <Cart cart={cart} setCart={setCart}></Cart> */}
-      {/* {useEffect(()=> {
-        <PizzaSelect pizzaSelect={pizzaSelect}></PizzaSelect>
-      }, [setPizza] )} */}
-      {
-        pizzaSelect ? <PizzaSelect pizzaSelect={pizzaSelect}></PizzaSelect> :  null
-      }
-      
-      <Cart
-        cart={cart}
-        totalCart={totalCart}
-        productos={productos}
-        add={add}
-        subtract={subtract}
-      ></Cart>
-      {token ? null : (
-        <h6>
-          instrucciones: registra un mail y contraseña que quieras (y que sea
-          funcional) y luego ponlo en la zona de logueo para cargar la app
-        </h6>
-      )}
-      {token ? (
-        <Home productos={productos} add={add} subtract={subtract} setPizza={setPizza}></Home>
-      ) : (
-        <div>
-          <RegistrerPage
-            datos={datos}
-            setDatos={setDatos}
-            setUser={setUser}
-          ></RegistrerPage>
-          <LoginPage user={user} setToken={setToken}></LoginPage>
-        </div>
-      )}
+      <Navbar token={token} setToken={setToken} totalCart={totalCart}></Navbar>
+      {/* {
+        pizzaSelect ? <PizzaSelect pizzaSelect={pizzaSelect}></PizzaSelect> : null
+      } */}
+
+      <Routes>
+
+        <Route
+          path="/"
+          element={
+            <Home productos={productos}
+              add={add}
+              subtract={subtract}
+              setPizza={setPizza} />
+
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              cart={cart}
+              totalCart={totalCart}
+              productos={productos}
+              add={add}
+              subtract={subtract}
+            />
+
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <RegistrerPage
+              datos={datos}
+              setDatos={setDatos}
+              setUser={setUser}
+              token={token}
+            />
+
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <LoginPage
+              user={user}
+              token={token}
+              setToken={setToken} />
+          }
+        />
+        <Route
+          path="/pizza/p001"
+          element={
+            <PizzaSelect pizzaSelect={pizzaSelect} />
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Profile
+              user={user}
+              token={token}
+              setToken={setToken}
+            />
+          }
+        />
+
+<Route
+          path="*"
+          element={
+            <NotFound
+            />
+          }
+        />
+
+
+      </Routes>
+
+
 
       <Footer></Footer>
     </div>

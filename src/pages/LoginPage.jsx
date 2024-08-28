@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const LoginPage = (props) => {
   const loginAction = (e) => {
     e.preventDefault();
@@ -29,9 +30,25 @@ const LoginPage = (props) => {
     });
   };
   return (
+    <>
+    {props.token ? 
+
+      <div className="divRegister">
+        <h2>Sesion iniciada correctamente!</h2>
+        <button
+        className="buttonReg">
+        <Link to="/">
+        Ir a pedir
+        </Link>
+          
+        </button>
+
+      </div>
+
+    : 
     <div className="divRegister">
       <h2>Tienes cuenta? inicia sesion aqui!</h2>
-      <form onSubmit={loginAction}>
+      <form className="formRegister" onSubmit={loginAction}>
         <div className="passBox">
           <input
             className="inputPass"
@@ -55,7 +72,9 @@ const LoginPage = (props) => {
           Enviar{" "}
         </button>
       </form>
-    </div>
+    </div>}
+    </>
   );
+
 };
 export default LoginPage;

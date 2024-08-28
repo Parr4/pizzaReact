@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const RegistrerPage = (props) => {
   const actualizarFormulario = (event) => {
     props.setDatos({
@@ -24,7 +25,23 @@ const RegistrerPage = (props) => {
     });
   };
   return (
-    <div className="divRegister">
+    <>
+    {props.token ? 
+
+      <div className="divRegister">
+        <h2>Parece que ya tienes cuenta!</h2>
+        <button
+        className="buttonReg">
+        <Link to="/">
+        Ir a pedir
+        </Link>
+          
+        </button>
+
+      </div>
+
+    : 
+      <div className="divRegister">
       <h2>Primera vez? Crea tu cuenta!</h2>
       <form onSubmit={enviarFormulario} className="formRegister">
         <input
@@ -63,10 +80,16 @@ const RegistrerPage = (props) => {
           type="submit"
           disabled={props.datos.password !== props.datos.confirm_password}
         >
-          Registrarme
+        Registrarme
+          
         </button>
       </form>
-    </div>
+      </div>
+    }
+    
+    
+      
+    </>
   );
 };
 export default RegistrerPage;

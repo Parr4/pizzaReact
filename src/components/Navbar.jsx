@@ -1,9 +1,11 @@
 import React from 'react'
 import pizzaimg from '../assets/pizza.webp'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
+
 
 export default function Navbar(props) {
-  const total = 25500;
+
 
   return (
     <nav class="navbar navbar-expand-lg ">
@@ -16,23 +18,29 @@ export default function Navbar(props) {
 
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+              <Link class="nav-link active" to="/" aria-current="page" >Inicio</Link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Perfil</a>
+              <Link to="/profile" class="nav-link" href="#">Perfil</Link>
             </li>
 
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" >Total: ${total.toLocaleString()}</a>
+              <Link className='nav-link' to="/cart">
+                <i class=" fa-solid fa-cart-shopping " ></i>
+              </Link>
+
+            </li>
+            <li class="nav-item">
+              <Link to="/cart" className="nav-link" >Total: ${props.totalCart.toLocaleString()}</Link>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link">{props.token ? <button onClick={(e)=> {e.preventDefault; props.setToken(false); alert('Su cuenta se ha deslogueado')}}>Logout</button> : <button>Iniciar Sesion</button>}</a>
+              {props.token ? <button className="btn-success btn" onClick={(e) => { e.preventDefault; props.setToken(false); alert('Su cuenta se ha deslogueado') }}>Logout</button> : <Link  to="/login"> <button className=" btn-success btn">Iniciar Sesion</button></Link>}
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">{props.token ? undefined : <button>Regristrarse</button>}</a>
+              {props.token ? undefined :<Link to="/register"> <button className=" btn-success btn">Regristrarse</button></Link>}
             </li>
 
           </ul>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import productos from "./productos.json";
+import productos from "../components/productos.json";
 
 export const Cart = ({ cart, add, subtract, totalCart }) => {
 

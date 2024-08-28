@@ -3,6 +3,10 @@
   padding: 0;
 
 }
+a{
+  text-decoration: none!important;
+  color: inherit!important;
+}
 .App{
   width: 100%;
 }
@@ -55,7 +59,7 @@ nav{
 .buttons{
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-evenly;
   gap: 25%;
 }
 
@@ -102,15 +106,15 @@ nav{
 }
 
 .formRegister{
-
+  width: 100%;
   justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.formRegister>input{
-  text-transform: capitalize;
+.nav-item{
+  padding:0 5px;
 }
 .divRegister>h2{
   font-weight: bolder;
@@ -124,7 +128,12 @@ nav{
   border-radius: 15px;
 }
 .divRegister{
-
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
   padding: 3% 0;
   background-color: #d4d4d4;
 }

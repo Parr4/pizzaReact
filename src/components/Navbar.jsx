@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import pizzaimg from '../assets/pizza.webp'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
+import { CartContext } from '../context/CartContext';
 
 
 export default function Navbar(props) {
-
+  const {totalCart} = useContext(CartContext)
 
   return (
     <nav class="navbar navbar-expand-lg ">
@@ -33,7 +34,7 @@ export default function Navbar(props) {
 
             </li>
             <li class="nav-item">
-              <Link to="/cart" className="nav-link" >Total: ${props.totalCart.toLocaleString()}</Link>
+              <Link to="/cart" className="nav-link" >Total: ${totalCart.toLocaleString()}</Link>
             </li>
 
             <li class="nav-item">

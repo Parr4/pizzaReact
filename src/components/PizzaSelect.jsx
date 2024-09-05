@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { PizzaContext } from "../context/PizzaContext";
 
-export const PizzaSelect = ({ pizzaSelect }) => {
+export const PizzaSelect = () => {
+  const { pizzaSelect } =useContext(PizzaContext)
   const [pizza, setPizza] = useState({
     desc: "La pizza napolitana, de masa tierna y delgada pero bordes altos, es la versión propia de la cocina napolitana de la pizza redonda. El término pizza napoletana, por su importancia histórica o regional, se emplea en algunas zonas como sinónimo de pizza tonda.",
     id: "p001",

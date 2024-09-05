@@ -2,11 +2,11 @@ import React from 'react'
 import Header from '../components/Header'
 import { Listado } from '../components/Listado'
 
-export const Home = ({productos , add, subtract, setPizza}) => {
+export const Home = () => {
   return (
     <div>
             <Header></Header>
-            <Listado productos={productos} add={add} subtract={subtract} setPizza={setPizza}></Listado>
+            <Listado ></Listado>
     </div>
   )
 }

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import productos from "../components/productos.json";
+import { CartContext } from "../context/CartContext";
 
-export const Cart = ({ cart, add, subtract, totalCart }) => {
+export const Cart = () => {
 
-
+const { cart, add, subtract, totalCart } = useContext(CartContext)
 
   return (
     <div>

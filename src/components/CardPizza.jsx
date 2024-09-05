@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useParams } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 
 
-export default function CardPizza({pizza , add, subtract, setPizza}) {
-    
+export default function CardPizza({pizza ,  setPizza}) {
+    const {add, subtract} = useContext(CartContext)
 
     return (
         <div class="card">

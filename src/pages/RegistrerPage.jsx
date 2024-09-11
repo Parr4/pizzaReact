@@ -1,32 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-const RegistrerPage = (props) => {
+import { UserContext } from "../context/UserContext";
+const RegistrerPage = () => {
+  const {token, setToken, datos, setDatos, user, setUser} = useContext(UserContext)
   const actualizarFormulario = (event) => {
-    props.setDatos({
-      ...props.datos,
+    setDatos({
+      ...datos,
       [event.target.name]: event.target.value,
     });
   };
   const enviarFormulario = (e) => {
     e.preventDefault();
     alert(
-      `Se ha creado el usuario con el email: ${props.datos.email}
+      `Se ha creado el usuario con el email: ${datos.email}
  `
     );
-    props.setDatos({
+    setDatos({
       email: "",
       password: "",
       confirm_password: "",
     });
-    props.setUser({
-      ...props.datos,
+    setUser({
+      ...datos,
       [event.target.name]: event.target.value,
     });
   };
   return (
     <>
-    {props.token ? 
+    {token ? 
 
       <div className="divRegister">
         <h2>Parece que ya tienes cuenta!</h2>
@@ -49,7 +51,7 @@ const RegistrerPage = (props) => {
           className="inputMail"
           type="email"
           name="email"
-          value={props.datos.email}
+          value={datos.email}
           placeholder="ingrese su email"
           onChange={actualizarFormulario}
         />
@@ -59,7 +61,7 @@ const RegistrerPage = (props) => {
             className="inputPass"
             type="password"
             name="password"
-            value={props.datos.password}
+            value={datos.password}
             placeholder="ingrese su constraseña"
             onChange={actualizarFormulario}
           />
@@ -69,7 +71,7 @@ const RegistrerPage = (props) => {
             className="inputPass"
             type="password"
             name="confirm_password"
-            value={props.datos.confirm_password}
+            value={datos.confirm_password}
             placeholder="Comfirme su contraseña"
             onChange={actualizarFormulario}
           />
@@ -78,7 +80,7 @@ const RegistrerPage = (props) => {
         <button
         className="buttonReg"
           type="submit"
-          disabled={props.datos.password !== props.datos.confirm_password}
+          disabled={datos.password !== datos.confirm_password}
         >
         Registrarme
           

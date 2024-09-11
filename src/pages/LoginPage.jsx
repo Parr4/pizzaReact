@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-const LoginPage = (props) => {
+import { UserContext } from "../context/UserContext";
+const LoginPage = () => {
+  const {token, setToken, user, setUser, datos, setDatos} = useContext(UserContext)
   const loginAction = (e) => {
     e.preventDefault();
-    if (loginData.email === props.user.email) {
-      if (loginData.password === props.user.password) {
-        props.setToken(true);
+    if (loginData.email === user.email) {
+      if (loginData.password === user.password) {
+        setToken(true);
         setLoginData({
           email: "",
           password: "",
@@ -31,7 +33,7 @@ const LoginPage = (props) => {
   };
   return (
     <>
-    {props.token ? 
+    {token ? 
 
       <div className="divRegister">
         <h2>Sesion iniciada correctamente!</h2>

@@ -1,10 +1,16 @@
 import React, { useContext, useState } from "react";
 import productos from "../components/productos.json";
 import { CartContext } from "../context/CartContext";
+import { UserContext } from "../context/UserContext";
 
 export const Cart = () => {
-
-const { cart, add, subtract, totalCart } = useContext(CartContext)
+const {token, user} =useContext(UserContext)
+const { cart, add, subtract, setTotal, totalCart, setCart} = useContext(CartContext)
+const pay = () =>{
+  alert('El pago ha sido realizado con exito su comprobante sera enviado a: ' + user.email)
+  setCart([])
+  setTotal(0)
+}
 
   return (
     <div>
@@ -45,7 +51,8 @@ const { cart, add, subtract, totalCart } = useContext(CartContext)
         </div>
       ))}
 
-      <h2 className="listTotal">Total a pagar: ${totalCart}</h2>
+      <h2 className="listTotal">Total a pagar: ${totalCart} <button className={`btn btn-lg ${token ? 'btn-success': 'btn-secondary disabled'} `} onClick={() => pay()}>Pagar</button></h2>
+      
     </div>
   );
 };

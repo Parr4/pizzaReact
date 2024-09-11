@@ -1,22 +1,37 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { PizzaContext } from "../context/PizzaContext";
 
 export const PizzaSelect = () => {
-  const { pizzaSelect } =useContext(PizzaContext)
-  const [pizza, setPizza] = useState({
-    desc: "La pizza napolitana, de masa tierna y delgada pero bordes altos, es la versión propia de la cocina napolitana de la pizza redonda. El término pizza napoletana, por su importancia histórica o regional, se emplea en algunas zonas como sinónimo de pizza tonda.",
-    id: "p001",
-    img: "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_cl.jpg?alt=media&token=6a9a33da-5c00-49d4-9080-784dcc87ec2c",
-    ingredients: [
-      "mozzarella",
-      "tomates",
-      "jamón",
-      "orégano"
-    ],
-    name: "napolitana",
-    price: 5950
-})
+//   const { pizzaSelect } =useContext(PizzaContext)
+//   const [pizza, setPizza] = useState({
+//     desc: "La pizza napolitana, de masa tierna y delgada pero bordes altos, es la versión propia de la cocina napolitana de la pizza redonda. El término pizza napoletana, por su importancia histórica o regional, se emplea en algunas zonas como sinónimo de pizza tonda.",
+//     id: "p001",
+//     img: "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_cl.jpg?alt=media&token=6a9a33da-5c00-49d4-9080-784dcc87ec2c",
+//     ingredients: [
+//       "mozzarella",
+//       "tomates",
+//       "jamón",
+//       "orégano"
+//     ],
+//     name: "napolitana",
+//     price: 5950
+// })
+
+  const {id} =useParams()
+  const [pizza, setPizza] = useState({})
+  const navigate = useNavigate()
+  const getPizza = async()=>{
+    const response = await fetch(`${import.meta.env.VITE_PIZZAURL}/${id}`)
+    const result = await response.json()
+    console.log(result)
+    setPizza(result)
+
+  }
+
+  useEffect(() => {
+    getPizza()
+  }, [])
   return (
     
     <div className="container">
@@ -32,12 +47,12 @@ export const PizzaSelect = () => {
           <h4 className="card-title selectTitle">Pizza {pizza.name}</h4>
             <h6 className="card-text">Esta pizza incluye:</h6>
             <h6 className="text-body">
-              {pizza.ingredients.map((segment, index) => (
+              {/* {pizza.ingredients.map((segment, index) => (
                 <>
                   {index > 0 && " - "}
                   {segment}
                 </>
-              ))}
+              ))} */}
             </h6>
             <p class="text-body">{pizza.desc}</p>
             <h5 className="card-text">Valor: ${pizza.price}</h5>

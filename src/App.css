@@ -205,3 +205,8 @@ nav{
   /* text-transform: uppercase; */
   font-weight: bold;
 }
+
+.active{
+  color: green;
+  font-weight: bolder;
+}

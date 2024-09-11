@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../context/UserContext'
 
-export const Profile = ({user, token, setToken}) => {
+export const Profile = () => {
+  const {token, setToken, user, setUser} = useContext(UserContext)
   return (
     <>
     {

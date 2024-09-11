@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext();
 
@@ -12,6 +12,8 @@ const CartProvider = ({children}) => {
 
     setTotal(totalCart + price);
   };
+
+
 
   const add = (producto) => {
     let coincidencia = cart.findIndex((item) => item.id === producto.id);

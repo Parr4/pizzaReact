@@ -6,10 +6,10 @@ import { PizzaContext } from '../context/PizzaContext'
 export const Listado = () => {
   const {productos , setPizza} = useContext(PizzaContext)
   return (
-    <div className='container-fluid  row listado'>
+    <div className='container  catalogDisplay'>
         {
           productos.map((producto ,key) => (
-            <div className='col-md-3'
+            <div className=''
             key={key}>
                 <CardPizza pizza={producto} setPizza={setPizza}/>
             </div>

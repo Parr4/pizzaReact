@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 
 export const Profile = () => {
-  const {token, setToken, user, setUser} = useContext(UserContext)
+  const {token, logout, user, setUser} = useContext(UserContext)
   return (
     <>
     {
@@ -11,7 +11,7 @@ export const Profile = () => {
         <div className="divRegister">
             <h2>Bienvenido </h2>
             <h3>Tu email registrado es {user.email}!</h3>
-            <button className="btn-success btn" onClick={(e) => { e.preventDefault; setToken(false); alert('Su cuenta se ha deslogueado') }}>Logout</button>
+            <button className="btn-success btn" onClick={(e) => { e.preventDefault; logout();  }}>Logout</button>
         </div>
         :
         <div className="divRegister">

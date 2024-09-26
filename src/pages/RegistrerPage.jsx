@@ -3,28 +3,24 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 const RegistrerPage = () => {
-  const {token, setToken, datos, setDatos, user, setUser} = useContext(UserContext)
-  const actualizarFormulario = (event) => {
-    setDatos({
-      ...datos,
-      [event.target.name]: event.target.value,
-    });
-  };
+  const {token, handleRegister, password, setEmail, setPassword, email} = useContext(UserContext)
+
+  const [passConfirm, passReload] = useState('')
   const enviarFormulario = (e) => {
     e.preventDefault();
-    alert(
-      `Se ha creado el usuario con el email: ${datos.email}
- `
-    );
-    setDatos({
-      email: "",
-      password: "",
-      confirm_password: "",
-    });
-    setUser({
-      ...datos,
-      [event.target.name]: event.target.value,
-    });
+//     alert(
+//       `Se ha creado el usuario con el email: ${datos.email}
+//  `
+//     );
+    // setDatos({
+    //   email: "",
+    //   password: "",
+    //   confirm_password: "",
+    // });
+    // setUser({
+    //   ...datos,
+    //   [event.target.name]: event.target.value,
+    // });
   };
   return (
     <>
@@ -45,15 +41,15 @@ const RegistrerPage = () => {
     : 
       <div className="divRegister">
       <h2>Primera vez? Crea tu cuenta!</h2>
-      <form onSubmit={enviarFormulario} className="formRegister">
+      <form onSubmit={handleRegister} className="formRegister">
         <input
         minlength="10"
           className="inputMail"
           type="email"
           name="email"
-          value={datos.email}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="ingrese su email"
-          onChange={actualizarFormulario}
         />
         <div className="passBox">
           <input
@@ -61,9 +57,9 @@ const RegistrerPage = () => {
             className="inputPass"
             type="password"
             name="password"
-            value={datos.password}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="ingrese su constraseña"
-            onChange={actualizarFormulario}
           />
 
           <input
@@ -71,16 +67,16 @@ const RegistrerPage = () => {
             className="inputPass"
             type="password"
             name="confirm_password"
-            value={datos.confirm_password}
+            value={passConfirm}
             placeholder="Comfirme su contraseña"
-            onChange={actualizarFormulario}
+            onChange={(e) => passReload(e.target.value)}
           />
         </div>
 
         <button
         className="buttonReg"
           type="submit"
-          disabled={datos.password !== datos.confirm_password}
+          disabled={password !== passConfirm}
         >
         Registrarme
           

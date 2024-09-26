@@ -5,11 +5,12 @@ import { UserContext } from "../context/UserContext";
 
 export const Cart = () => {
 const {token, user} =useContext(UserContext)
-const { cart, add, subtract, setTotal, totalCart, setCart} = useContext(CartContext)
+const { cart, add, subtract, setTotal, totalCart, setCart, sendCart} = useContext(CartContext)
 const pay = () =>{
+  sendCart()
   alert('El pago ha sido realizado con exito su comprobante sera enviado a: ' + user.email)
-  setCart([])
-  setTotal(0)
+  // (setCart([]), setTotal(0))
+
 }
 
   return (

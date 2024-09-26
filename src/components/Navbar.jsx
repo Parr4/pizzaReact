@@ -7,7 +7,7 @@ import { UserContext } from "../context/UserContext";
 
 export default function Navbar() {
   const { totalCart } = useContext(CartContext);
-  const { token, setToken, user, setUser } = useContext(UserContext);
+  const { token, logout, setToken, user, setUser } = useContext(UserContext);
   // const token = true
 
   return (
@@ -57,8 +57,7 @@ export default function Navbar() {
                 className="btn-success btn nav-item"
                 onClick={(e) => {
                   e.preventDefault;
-                  setToken(false);
-                  alert("Su cuenta se ha deslogueado");
+                  logout()
                 }}
               >
                 Logout

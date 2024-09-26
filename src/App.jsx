@@ -52,8 +52,8 @@ function App() {
         />
         <Route
           path="/login"
-          element={
-            <LoginPage/>
+          element={token ?
+            <Navigate to="/profile"/> : <LoginPage/>
           }
         />
         
